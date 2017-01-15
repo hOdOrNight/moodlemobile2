@@ -1,0 +1,128 @@
+[36mDEBUG [config]: [39mautoWatch set to false, because of singleRun
+[36mDEBUG [plugin]: [39mLoading karma-* from /home/diwakar/Education/tests/moodlemobile2/node_modules
+[36mDEBUG [plugin]: [39mLoading plugin /home/diwakar/Education/tests/moodlemobile2/node_modules/karma-browserify.
+[36mDEBUG [plugin]: [39mLoading plugin /home/diwakar/Education/tests/moodlemobile2/node_modules/karma-chrome-launcher.
+[36mDEBUG [plugin]: [39mLoading plugin /home/diwakar/Education/tests/moodlemobile2/node_modules/karma-jasmine.
+[36mDEBUG [plugin]: [39mLoading plugin /home/diwakar/Education/tests/moodlemobile2/node_modules/karma-requirejs.
+[33mWARN [watcher]: [39mPattern "/home/diwakar/Education/tests/moodlemobile2/www/lib/**/browser*.*" does not match any file.
+[36mDEBUG [watcher]: [39mResolved files:
+	/home/diwakar/Education/tests/moodlemobile2/node_modules/requirejs/require.js
+	/home/diwakar/Education/tests/moodlemobile2/node_modules/karma-requirejs/lib/adapter.js
+	/home/diwakar/Education/tests/moodlemobile2/node_modules/jasmine-core/lib/jasmine-core/jasmine.js
+	/home/diwakar/Education/tests/moodlemobile2/node_modules/karma-jasmine/lib/boot.js
+	/home/diwakar/Education/tests/moodlemobile2/node_modules/karma-jasmine/lib/adapter.js
+	/home/diwakar/Education/tests/moodlemobile2/www/lib/ionic/release/js/ionic.bundle.js
+	/home/diwakar/Education/tests/moodlemobile2/www/lib/ionic/release/js/ionic-angular.js
+	/home/diwakar/Education/tests/moodlemobile2/www/lib/requirejs/require.js
+	/home/diwakar/Education/tests/moodlemobile2/www/lib/moment/moment.js
+	/home/diwakar/Education/tests/moodlemobile2/www/lib/angular-animate/angular-animate.js
+	/home/diwakar/Education/tests/moodlemobile2/www/lib/angular-animate/angular-animate.min.js
+	/home/diwakar/Education/tests/moodlemobile2/www/lib/angular-aria/angular-aria.js
+	/home/diwakar/Education/tests/moodlemobile2/www/lib/angular-aria/angular-aria.min.js
+	/home/diwakar/Education/tests/moodlemobile2/www/lib/angular-chart.js/angular-chart.js
+	/home/diwakar/Education/tests/moodlemobile2/www/lib/angular-ckeditor/angular-ckeditor.js
+	/home/diwakar/Education/tests/moodlemobile2/www/lib/angular-ckeditor/angular-ckeditor.min.js
+	/home/diwakar/Education/tests/moodlemobile2/www/lib/angular-md5/angular-md5.js
+	/home/diwakar/Education/tests/moodlemobile2/www/lib/angular-md5/angular-md5.min.js
+	/home/diwakar/Education/tests/moodlemobile2/www/lib/angular-messages/angular-messages.js
+	/home/diwakar/Education/tests/moodlemobile2/www/lib/angular-messages/angular-messages.min.js
+	/home/diwakar/Education/tests/moodlemobile2/www/lib/angular-mocks/angular-mocks.js
+	/home/diwakar/Education/tests/moodlemobile2/www/lib/angular-sanitize/angular-sanitize.js
+	/home/diwakar/Education/tests/moodlemobile2/www/lib/angular-sanitize/angular-sanitize.min.js
+	/home/diwakar/Education/tests/moodlemobile2/www/lib/angular-translate-loader-partial/angular-translate-loader-partial.js
+	/home/diwakar/Education/tests/moodlemobile2/www/lib/angular-translate-loader-partial/angular-translate-loader-partial.min.js
+	/home/diwakar/Education/tests/moodlemobile2/www/lib/angular-translate/angular-translate.js
+	/home/diwakar/Education/tests/moodlemobile2/www/lib/angular-translate/angular-translate.min.js
+	/home/diwakar/Education/tests/moodlemobile2/www/lib/angular/angular.js
+	/home/diwakar/Education/tests/moodlemobile2/www/lib/angular/angular.min.js
+	/home/diwakar/Education/tests/moodlemobile2/www/lib/angular-ui-router/release/angular-ui-router.js
+	/home/diwakar/Education/tests/moodlemobile2/www/lib/angular-ui-router/release/angular-ui-router.min.js
+	/home/diwakar/Education/tests/moodlemobile2/www/lib/chart.js/src/chart.js
+	/home/diwakar/Education/tests/moodlemobile2/www/lib/jszip/dist/jszip.js
+	/home/diwakar/Education/tests/moodlemobile2/www/lib/jszip/dist/jszip.min.js
+	/home/diwakar/Education/tests/moodlemobile2/www/lib/ngCordova/dist/ng-cordova-mocks.js
+	/home/diwakar/Education/tests/moodlemobile2/www/lib/ngCordova/dist/ng-cordova-mocks.min.js
+	/home/diwakar/Education/tests/moodlemobile2/www/lib/ngCordova/dist/ng-cordova.js
+	/home/diwakar/Education/tests/moodlemobile2/www/lib/ngCordova/dist/ng-cordova.min.js
+	/home/diwakar/Education/tests/moodlemobile2/www/lib/oclazyload/dist/ocLazyLoad.js
+	/home/diwakar/Education/tests/moodlemobile2/www/lib/oclazyload/dist/ocLazyLoad.min.js
+	/home/diwakar/Education/tests/moodlemobile2/www/lib/oclazyload/dist/ocLazyLoad.require.js
+	/home/diwakar/Education/tests/moodlemobile2/www/lib/oclazyload/dist/ocLazyLoad.require.min.js
+	/home/diwakar/Education/tests/moodlemobile2/www/lib/ckeditor/ckeditor.js
+	/home/diwakar/Education/tests/moodlemobile2/www/lib/ionic/release/js/ionic.js
+	/home/diwakar/Education/tests/moodlemobile2/www/lib/ydn.db/jsc/ydn.db-dev.js
+	/home/diwakar/Education/tests/moodlemobile2/www/build/mm.bundle.js
+	/home/diwakar/Education/tests/moodlemobile2/www/core/tests/config.js
+[32mINFO [karma]: [39mKarma v0.12.37 server started at http://localhost:9876/
+[32mINFO [launcher]: [39mStarting browser Chrome
+[36mDEBUG [temp-dir]: [39mCreating temp dir at /tmp/karma-40145765
+[36mDEBUG [launcher]: [39mgoogle-chrome --user-data-dir=/tmp/karma-40145765 --no-default-browser-check --no-first-run --disable-default-apps --disable-popup-blocking --disable-translate http://localhost:9876/?id=40145765
+[36mDEBUG [web-server]: [39mserving: /home/diwakar/Education/tests/moodlemobile2/node_modules/karma/static/client.html
+[36mDEBUG [web-server]: [39mserving: /home/diwakar/Education/tests/moodlemobile2/node_modules/karma/static/karma.js
+[36mDEBUG [web-server]: [39mupgrade /socket.io/1/websocket/_XanQU0wmYosQGAuXpcv
+[36mDEBUG [karma]: [39mA browser has connected on socket _XanQU0wmYosQGAuXpcv
+[36mDEBUG [web-server]: [39mserving: /home/diwakar/Education/tests/moodlemobile2/node_modules/karma/static/favicon.ico
+[32mINFO [Chrome 55.0.2883 (Linux 0.0.0)]: [39mConnected on socket _XanQU0wmYosQGAuXpcv with id 40145765
+[36mDEBUG [launcher]: [39mChrome (id 40145765) captured in 1.799 secs
+[36mDEBUG [web-server]: [39mserving: /home/diwakar/Education/tests/moodlemobile2/node_modules/karma/static/context.html
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/node_modules/requirejs/require.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/node_modules/karma-requirejs/lib/adapter.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/node_modules/jasmine-core/lib/jasmine-core/jasmine.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/node_modules/karma-jasmine/lib/boot.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/node_modules/karma-jasmine/lib/adapter.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/lib/ionic/release/js/ionic.bundle.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/lib/requirejs/require.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/lib/ionic/release/js/ionic-angular.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/lib/moment/moment.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/lib/angular-animate/angular-animate.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/lib/angular-animate/angular-animate.min.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/lib/angular-aria/angular-aria.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/lib/angular-aria/angular-aria.min.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/lib/angular-chart.js/angular-chart.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/lib/angular-ckeditor/angular-ckeditor.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/lib/angular-ckeditor/angular-ckeditor.min.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/lib/angular-md5/angular-md5.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/lib/angular-md5/angular-md5.min.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/lib/angular-messages/angular-messages.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/lib/angular-messages/angular-messages.min.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/lib/angular-mocks/angular-mocks.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/lib/angular-sanitize/angular-sanitize.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/lib/angular-sanitize/angular-sanitize.min.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/lib/angular-translate/angular-translate.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/lib/angular-translate/angular-translate.min.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/lib/angular-translate-loader-partial/angular-translate-loader-partial.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/lib/angular-translate-loader-partial/angular-translate-loader-partial.min.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/lib/angular/angular.min.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/lib/angular/angular.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/lib/jszip/dist/jszip.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/lib/angular-ui-router/release/angular-ui-router.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/lib/angular-ui-router/release/angular-ui-router.min.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/lib/chart.js/src/chart.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/lib/jszip/dist/jszip.min.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/lib/ngCordova/dist/ng-cordova-mocks.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/lib/ngCordova/dist/ng-cordova-mocks.min.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/lib/ngCordova/dist/ng-cordova.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/lib/ngCordova/dist/ng-cordova.min.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/lib/oclazyload/dist/ocLazyLoad.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/lib/oclazyload/dist/ocLazyLoad.min.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/lib/oclazyload/dist/ocLazyLoad.require.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/lib/ionic/release/js/ionic.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/lib/ckeditor/ckeditor.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/lib/oclazyload/dist/ocLazyLoad.require.min.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/lib/ydn.db/jsc/ydn.db-dev.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/build/mm.bundle.js
+[36mDEBUG [web-server]: [39mserving (cached): /home/diwakar/Education/tests/moodlemobile2/www/core/tests/config.js
+Chrome 55.0.2883 (Linux 0.0.0) LOG: 'WARNING: Tried to load angular more than once.'
+
+Chrome 55.0.2883 (Linux 0.0.0) LOG: 'WARNING: Tried to load angular more than once.'
+
+Chrome 55.0.2883 (Linux 0.0.0) ERROR
+  Uncaught Error: Module name "core/core.js" has not been loaded yet for context: _. Use require([])
+  http://requirejs.org/docs/errors.html#notloaded
+  at /home/diwakar/Education/tests/moodlemobile2/node_modules/requirejs/require.js:143
+
+
+[36mDEBUG [karma]: [39mRun complete, exiting.
+[36mDEBUG [launcher]: [39mDisconnecting all browsers
+[36mDEBUG [launcher]: [39mProcess Chrome exited with code 0
+[36mDEBUG [temp-dir]: [39mCleaning temp dir /tmp/karma-40145765

@@ -386,7 +386,7 @@ var remoteAddonPaths = {
   ]
 };
 
-gulp.task('default', ['build', 'sass', 'lang', 'config']);
+gulp.task('default', ['build', 'sass', 'lang', 'config', 'e2e-build']);
 
 gulp.task('sass-build', function(done) {
   gulp.src(paths.sass.core)

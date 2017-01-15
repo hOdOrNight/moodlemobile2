@@ -14,19 +14,23 @@
 
 describe('$mmConfig', function() {
     var mmConfig, httpBackend, timeout, randid;
-
+    console.log("Hello, tests start123ed");
     // Injecting.
     beforeEach(module('mm.core'));
+    beforeEach(module('ui.router'));
+    console.log("Hello, tests start123ed1");
     beforeEach(inject(function($mmConfig, $httpBackend, $timeout) {
+        console.log("Hello, tests start123ed2");
         mmConfig = $mmConfig;
         httpBackend = $httpBackend;
         timeout = $timeout;
-
+        console.log("H123ello, tests started");
         httpBackend.expectGET('config.json')
             .respond(200, {'app_id': 'com.moodle.moodlemobile'});
     }));
 
     it('config can be read from config.json', function(done) {
+        console.log("Hello, tests started");
         mmConfig.get('app_id')
             .then(function(data) {
                 expect(data).toEqual('com.moodle.moodlemobile');
@@ -38,7 +42,7 @@ describe('$mmConfig', function() {
         httpBackend.flush();
         timeout.flush();
     });
-
+/*
     it('config from JSON cannot be overridden', function(done) {
         mmConfig.set('app_id')
             .then(function() {
@@ -80,5 +84,5 @@ describe('$mmConfig', function() {
         timeout.flush();
         setTimeout(timeout.flush, 1500);
     });
-
+    */
 })
