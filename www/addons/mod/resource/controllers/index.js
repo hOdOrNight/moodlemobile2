@@ -39,7 +39,9 @@ angular.module('mm.addons.mod_resource')
 
     function fetchContent(refresh) {
         // Load module contents if needed.
-        return $mmCourse.loadModuleContents(module, courseId).then(function() {
+        return $mmaModResource.getResourceData(courseId, module.id).then(function(resource) {
+            $scope.title = resource.name || $scope.title;
+            $scope.description = resource.intro || $scope.description;
             if (!module.contents || !module.contents.length) {
                 $mmUtil.showErrorModal('mma.mod_resource.errorwhileloadingthecontent', true);
                 return $q.reject();

@@ -38,7 +38,9 @@ angular.module('mm.addons.mod_page')
 
     function fetchContent(refresh) {
         // Load module contents if needed.
-        return $mmCourse.loadModuleContents(module, courseId).then(function() {
+        return $mmaModPage.getPageData(courseId, module.id).then(function(pageData) {
+            $scope.title = pageData.name || $scope.title;
+            $scope.description = pageData.intro || $scope.description;
             var downloadFailed = false;
             // Prefetch the content so ALL files are downloaded, not just the ones shown in the page.
             return $mmaModPagePrefetchHandler.download(module).catch(function() {

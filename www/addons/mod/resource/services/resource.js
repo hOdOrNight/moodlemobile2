@@ -283,5 +283,80 @@ angular.module('mm.addons.mod_resource')
         });
     };
 
+    /**
+     * Get a resource data.
+     *
+     * @module mm.addons.mod_resource
+     * @ngdoc method
+     * @name $mmaModResource#getResourceData
+     * @param {Number} courseid Course ID.
+     * @param {Number} cmid     Course module ID.
+     * @return {Promise}        Promise resolved when the resource is retrieved.
+     */
+    function getResourceData(siteId, courseId, key, value) {
+        return $mmSitesManager.getSite(siteId).then(function(site) {
+            var params = {
+                    courseids: [courseId]
+                },
+                preSets = {
+                    cacheKey: getResourceCacheKey(courseId)
+                };
+
+            return $mmSite.read('mod_resource_get_resources_by_courses', params, preSets).then(function(response) {
+                if (response && response.resources) {
+                    var currentResource;
+                    angular.forEach(response.resources, function(resource) {
+                        if (!currentResource && resource[key] == value) {
+                            currentResource = resource;
+                        }
+                    });
+                    if (currentResource) {
+                        return currentResource;
+                    }
+                }
+                return $q.reject();
+            });
+        });
+    };
+
+    /**
+     * Get a resource by course module ID.
+     *
+     * @module mm.addons.mod_resource
+     * @ngdoc method
+     * @name $mmaModResource#getResource
+     * @param {Number} courseId Course ID.
+     * @param {Number} cmId     Course module ID.
+     * @param {String} [siteId] Site ID. If not defined, current site.
+     * @return {Promise}        Promise resolved when the book is retrieved.
+     */
+    self.getResourceData = function(courseId, cmId, siteId) {
+        siteId = siteId || $mmSite.getId();
+        return getResourceData(siteId, courseId, 'coursemodule', cmId);
+    };
+
+    /**
+     * Get cache key for resource data WS calls.
+     *
+     * @param {Number} courseid Course ID.
+     * @return {String}         Cache key.
+     */
+    function getResourceCacheKey(courseid) {
+        return 'mmaModResource:resource:' + courseid;
+    }
+
+     /**
+     * Invalidates resource data.
+     *
+     * @module mm.addons.mod_resource
+     * @ngdoc method
+     * @name $mmaModResource#invalidateResourceData
+     * @param {Number} courseid Course ID.
+     * @return {Promise}        Promise resolved when the data is invalidated.
+     */
+    self.invalidateResourceData = function(courseid) {
+        return $mmSite.invalidateWsCacheForKey(getResourceCacheKey(courseid));
+    };
+
     return self;
 });

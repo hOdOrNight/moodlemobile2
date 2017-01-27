@@ -47,10 +47,12 @@ angular.module('mm.addons.mod_folder')
 
     // Convenience function to fetch folder data from Moodle.
     function fetchFolder(refresh) {
-        return $mmCourse.getModule(module.id, courseId, sectionId).then(function(module) {
+        return $mmaModFolder.getFolder(courseId, module.id).then(function(folder) { 
+            $scope.title = folder.name || $scope.title;
+            $scope.description = folder.intro || $scope.description;
             showModuleData(module);
             $mmCourseHelper.fillContextMenu($scope, module, courseId, refresh, mmaModFolderComponent);
-        }, function(error) {
+        }).catch(function(error) {
             if (error) {
                 $mmUtil.showErrorModal(error);
             } else {
@@ -62,7 +64,7 @@ angular.module('mm.addons.mod_folder')
                 showModuleData(module);
                 $mmCourseHelper.fillContextMenu($scope, module, courseId, refresh, mmaModFolderComponent);
             }
-            return $q.reject();
+            return $q.reject(); 
         });
     }
 
@@ -103,7 +105,7 @@ angular.module('mm.addons.mod_folder')
     $scope.refreshFolder = function() {
         if ($scope.canReload) {
             $scope.refreshIcon = 'spinner';
-            return $mmCourse.invalidateModule(module.id).finally(function() {
+            return $mmaModFolder.invalidateFolderData(module.id).finally(function() {
                 return fetchFolder(true).finally(function() {
                     $scope.refreshIcon = 'ion-refresh';
                     $scope.$broadcast('scroll.refreshComplete');

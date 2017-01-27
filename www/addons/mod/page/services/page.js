@@ -125,6 +125,68 @@ angular.module('mm.addons.mod_page')
     };
 
     /**
+     * Get a page data.
+     *
+     * @module mm.addons.mod_page
+     * @ngdoc method
+     * @name $mmaModPage#getPageData
+     * @param {Number} courseid Course ID.
+     * @param {Number} cmid     Course module ID.
+     * @return {Promise}        Promise resolved when the page is retrieved.
+     */
+    function getPageData(siteId, courseId, key, value) {
+        return $mmSitesManager.getSite(siteId).then(function(site) {
+            var params = {
+                    courseids: [courseId]
+                },
+                preSets = {
+                    cacheKey: getPageCacheKey(courseId)
+                };
+
+            return site.read('mod_page_get_pages_by_courses', params, preSets).then(function(response) {
+                if (response && response.pages) {
+                    var currentPage;
+                    angular.forEach(response.pages, function(page) {
+                        if (!currentPage && page[key] == value) {
+                            currentPage = page;
+                        }
+                    });
+                    if (currentPage) {
+                        return currentPage;
+                    }
+                }
+                return $q.reject();
+            });
+        });
+    };
+
+    /**
+     * Get a page by course module ID.
+     *
+     * @module mm.addons.mod_page
+     * @ngdoc method
+     * @name $mmaModPage#getPageData
+     * @param {Number} courseId Course ID.
+     * @param {Number} cmId     Course module ID.
+     * @param {String} [siteId] Site ID. If not defined, current site.
+     * @return {Promise}        Promise resolved when the book is retrieved.
+     */
+    self.getPageData = function(courseId, cmId, siteId) {
+        siteId = siteId || $mmSite.getId();
+        return getPageData(siteId, courseId, 'coursemodule', cmId);
+    };
+
+    /**
+     * Get cache key for page data WS calls.
+     *
+     * @param {Number} courseid Course ID.
+     * @return {String}         Cache key.
+     */
+    function getPageCacheKey(courseid) {
+        return 'mmaModPage:page:' + courseid;
+    }
+
+    /**
      * Report a page as being viewed.
      *
      * @module mm.addons.mod_page
