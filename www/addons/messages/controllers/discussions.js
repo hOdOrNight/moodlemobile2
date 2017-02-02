@@ -23,14 +23,22 @@ angular.module('mm.addons.messages')
  */
 .controller('mmaMessagesDiscussionsCtrl', function($scope, $mmUtil, $mmaMessages, $rootScope, $mmEvents, $mmSite, $ionicPlatform,
             mmCoreSplitViewLoad, mmaMessagesNewMessageEvent, $mmAddonManager, mmaMessagesReadChangedEvent,
-            mmaMessagesReadCronEvent) {
+            mmaMessagesReadCronEvent, $translate, $q, $mmApp) {
     var newMessagesObserver, readChangedObserver, cronObserver,
         siteId = $mmSite.getId(),
         discussions,
         $mmPushNotificationsDelegate = $mmAddonManager.get('$mmPushNotificationsDelegate'),
-        unregisterResume;
+        unregisterResume,
+        searchingMessage = $translate.instant('mm.core.searching'),
+        loadingMessage = $translate.instant('mm.core.loading');
 
     $scope.loaded = false;
+    $scope.formData = {
+        searchString: ''
+    }
+    $scope.showSearchResults = false;   // to switch the view template. discussions or searchResults
+    $scope.results = null;
+    $scope.canSearch = $mmaMessages.isSearchMessagesEnabled;
 
     function fetchDiscussions() {
         return $mmaMessages.getDiscussions().then(function(discs) {
@@ -63,6 +71,35 @@ angular.module('mm.addons.messages')
             $scope.$broadcast('scroll.refreshComplete');
         });
     };
+
+    $scope.searchMessage = function(query) {
+        $mmApp.closeKeyboard();
+        $scope.loaded = false;
+        $scope.loadingMessage = searchingMessage;
+        $scope.showSearchResults = true;
+
+        return $mmaMessages.searchMessages(query).then(function(searchResults) {
+            $scope.results = searchResults.contacts;
+        }).catch(function(error) {
+            if (typeof error == 'string') {
+                $mmUtil.showErrorModal(error);
+            } else {
+                $mmUtil.showErrorModal('mma.messages.errorwhileretrievingemessages', true);
+            }
+            return $q.reject();
+        }).finally(function() {
+            $scope.loaded = true;
+        });
+    };
+
+    $scope.clearSearch = function() {
+        $scope.loaded = false;
+        $scope.showSearchResults = false;
+        fetchDiscussions().finally(function() {
+            $scope.loaded = true;
+        });
+    };
+    
 
     fetchDiscussions().finally(function() {
         // Tell mm-split-view that it can load the first link now in tablets. We need to do it

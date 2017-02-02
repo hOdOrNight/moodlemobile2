@@ -961,6 +961,18 @@ angular.module('mm.addons.messages')
     };
 
     /**
+     * Returns whether or not we can search messages.
+     *
+     * @module mm.addons.messages
+     * @ngdoc method
+     * @name $mmaMessages#isSearchMessagesEnabled
+     * @return {Boolean}
+     */
+    self.isSearchMessagesEnabled = function() {
+        return $mmSite.wsAvailable('core_message_data_for_messagearea_search_messages');
+    }
+
+    /**
      * Remove a contact.
      *
      * @module mm.addons.messages
@@ -1012,6 +1024,26 @@ angular.module('mm.addons.messages')
             return contacts;
         });
     };
+
+    /**
+     * Search for all the messges with a specific text.
+     * 
+     * @module mm.addons.messages
+     * @ngdoc method
+     * @name $mmaMessages#searchMessages
+     * @param {String}  query   The query string
+     * @return {Promise}
+     */
+    self.searchMessages = function(query) {
+        var param = {
+            userid: $mmSite.getUserId(),
+            search: query
+        }
+
+        return $mmSite.read('core_message_data_for_messagearea_search_messages', param).then(function(searchResults) {
+            return searchResults;
+        });
+    }
 
     /**
      * Send a message to someone.
