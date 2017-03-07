@@ -203,6 +203,7 @@ angular.module('mm.addons.mod_wiki')
         return $mmaModWiki.getWiki(courseId, module.id, 'coursemodule').then(function(wiki) {
             var promises = [];
 
+            promises.push($mmaModWiki.invalidateWikisByCourse(courseId));
             promises.push($mmaModWiki.invalidateWikiData(courseId));
             promises.push($mmaModWiki.invalidateSubwikis(wiki.id));
             promises.push($mmaModWiki.invalidateSubwikiFiles(wiki.id));

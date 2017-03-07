@@ -705,6 +705,7 @@ angular.module('mm.addons.mod_wiki')
     // Convenience function to refresh all the data.
     function refreshAllData(sync, showErrors) {
         var promises = [$mmaModWiki.invalidateWikiData(courseId)];
+        promises.push($mmaModWiki.invalidateWikisByCourse(courseId));
         if (wiki) {
             promises.push($mmaModWiki.invalidateSubwikis(wiki.id));
             promises.push($mmGroups.invalidateActivityAllowedGroups(wiki.coursemodule));

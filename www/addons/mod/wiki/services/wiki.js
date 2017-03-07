@@ -69,6 +69,16 @@ angular.module('mm.addons.mod_wiki')
     }
 
     /**
+     * Get cache key for all wikis by CourseId.
+     *
+     * @param {Number} courseId Course ID.
+     * @return {String}     Cache key.
+     */
+    function getWikisByCoursesCacheKey(courseId) {
+        return 'mmaModWiki:getwikisbycourses:' + courseId;
+    }
+
+    /**
      * Get cache key for wiki Subwiki Files WS calls.
      *
      * @param {Number} wikiId Wiki ID.
@@ -756,6 +766,22 @@ angular.module('mm.addons.mod_wiki')
     self.invalidateFiles = function(moduleId, siteId) {
         return $mmFilepool.invalidateFilesByComponent(siteId, mmaModWikiComponent, moduleId);
     };
+
+    /**
+     * Invalidate all the wikis by course
+     *
+     * @module mm.addons.mod_wiki
+     * @ngdoc method
+     * @name $mmaModWiki#invalidateWikisByCourse
+     * @param {Number} courseId  The course ID.
+     * @param  {String} [siteId] Site ID. If not defined, current site.
+     * @return {Promise}         Promise resolved when the files are invalidated.
+     */
+    self.invalidateWikisByCourse = function(courseId, siteId) {
+        return $mmSitesManager.getSite(siteId).then(function(site) {
+            return site.invalidateWsCacheForKey(getWikisByCoursesCacheKey(courseId));
+        });
+    }
 
     /**
      * Report the wiki as being viewed.
