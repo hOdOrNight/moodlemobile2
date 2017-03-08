@@ -365,7 +365,7 @@ var paths = {
     plugins: './e2e/plugins',
     pluginsToRoot: '../../',
     specs: [
-      './www/**/e2e/*.spec.js'
+      './www/**/e2e/mod_assign.spec.js'
     ]
   }
 };

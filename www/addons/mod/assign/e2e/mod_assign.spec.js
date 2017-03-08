@@ -13,9 +13,31 @@
 // limitations under the License.
 
 describe('User can manage course assign', function() {
-
+    browser.ignoreSynchronization = true;
+    browser.waitForAngular();
+    browser.sleep(10000);
+    
+    /*
     it('View course assign windows', function (done) {
         return MM.loginAsStudent().then(function () {
+            browser.sleep(15000); 
+            return MM.clickOnInSideMenu('My courses');
+        }).then(function () {
+            browser.sleep(5000); 
+            return MM.clickOn('Activity examples');
+        }).then(function () {
+            browser.sleep(5000); 
+            return MM.clickOn('Assignments');
+        }).then(function () {
+            browser.sleep(5000); 
+            return MM.clickOn('Online Text Assignment');
+        }).then(function () {
+            done();
+        });
+    });*/
+
+    it('View course assign windows', function (done) {
+        return MM.loginAsTeacher().then(function () {
             return MM.clickOnInSideMenu('My courses');
         }).then(function () {
             return MM.clickOn('Psychology in Cinema');
@@ -29,7 +51,7 @@ describe('User can manage course assign', function() {
             done();
         });
     });
-
+    /*
     it('Click description tab', function (done) {
         return MM.loginAsStudent().then(function () {
             return MM.clickOnInSideMenu('My courses');
@@ -70,6 +92,7 @@ describe('User can manage course assign', function() {
 
     it('Click Add submission button', function (done) {
         return MM.loginAsStudent().then(function () {
+            
             return MM.clickOnInSideMenu('My courses');
         }).then(function () {
             return MM.clickOn('Psychology in Cinema');
@@ -104,6 +127,6 @@ describe('User can manage course assign', function() {
             done();
         });
     });
-
+    */
 });
 

@@ -12,6 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+var EC = protractor.ExpectedConditions;
+var isPresent = function(DOMElement) {
+    return EC.visibilityOf(DOMElement);
+} 
+var isClickable = function(button) {
+    return EC.elementToBeClickable(button);
+}
+
+var waitForCondition = require('./plugins/wait_for_transitions.js').waitForCondition;
+
 var MM = {},
     currentNavBar = '.nav-bar-block[nav-bar="active"]',
     currentView = 'ion-view[nav-view="active"]';
@@ -26,12 +36,20 @@ var MM = {},
  * @return {Promise}
  */
 MM.clickOn = function(text, container) {
+    waitForCondition();
     var locator = by.xpath('(//a | //button | //*[contains(concat(" ",normalize-space(@class)," ")," item ")])[contains(.,"' + text + '") or contains(@aria-label,"' + text + '")]');
+    
     if (container) {
+        waitForCondition();
+        //browser.wait(EC.visibilityOf(container), 5000);
         node = container.element(locator);
     } else {
+        waitForCondition();
         node = element(locator);
     }
+    waitForCondition();
+    browser.wait(EC.visibilityOf(node) , 15000);
+    browser.wait(EC.elementToBeClickable(node), 15000);
     return MM.clickOnElement(node);
 };
 
@@ -56,7 +74,11 @@ MM.clickOnElement = function(el) {
  */
 MM.clickOnInSideMenu = function(text) {
     return MM.openSideMenu().then(function() {
+        waitForCondition();
         var menu = $('ion-side-menu[side="left"]');
+        browser.wait(isPresent(menu), 15000);
+        browser.wait(isClickable(menu), 5000);
+        //browser.sleep(5000);
         return MM.clickOn(text, menu);
     });
 };
@@ -76,6 +98,7 @@ MM.getNavBar = function() {
  * @return {Element}
  */
 MM.getView = function() {
+    browser.sleep(5000);
     return $(currentView);
 };
 
@@ -86,6 +109,7 @@ MM.getView = function() {
  */
 MM.goBack = function() {
     var backBtn = $(currentNavBar + ' .back-button');
+    browser.sleep(10000);
     return backBtn.isPresent().then(function(present) {
         if (present) {
             return backBtn.isDisplayed().then(function(displayed) {
@@ -107,16 +131,22 @@ MM.goBack = function() {
  * @return {Promise}
  */
 MM.loginAs = function(username, password) {
+    
+    browser.ignoreSynchronization = true;
+    browser.waitForAngular();
+    browser.sleep(5000); 
+    
     element(by.model('siteurl'))
         .sendKeys(SITEURL);
 
     return $('[ng-click="connect(siteurl)"]').click()
     .then(function() {
+        browser.sleep(5000);
         element(by.model('credentials.username'))
             .sendKeys(username);
         element(by.model('credentials.password'))
             .sendKeys(password);
-
+        browser.sleep(5000);
         return $('[ng-click="login()"]').click();
     });
 };
@@ -165,6 +195,7 @@ MM.logout = function() {
  */
 MM.openSideMenu = function() {
     var menuBtn = $(currentNavBar + ' [menu-toggle="left"]:not(.hide)');
+    browser.sleep(5000);
     function navigateBack() {
         return MM.goBack().then(function() {
             return openMenu();
