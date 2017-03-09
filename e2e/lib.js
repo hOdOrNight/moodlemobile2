@@ -41,7 +41,7 @@ MM.clickOn = function(text, container) {
     
     if (container) {
         waitForCondition();
-        //browser.wait(EC.visibilityOf(container), 5000);
+        browser.wait(EC.visibilityOf(container), 5000);
         node = container.element(locator);
     } else {
         waitForCondition();
@@ -98,7 +98,8 @@ MM.getNavBar = function() {
  * @return {Element}
  */
 MM.getView = function() {
-    browser.sleep(5000);
+    waitForCondition();
+    browser.wait(isPresent($(currentView)), 15000);
     return $(currentView);
 };
 

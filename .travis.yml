@@ -15,6 +15,10 @@ language: node_js
 node_js:
 - '6.9.1'
 
+branches:
+  only:
+  - e2e-proposal
+
 before_install:
 - npm cache clean
 - npm install -g cordova ionic
@@ -23,6 +27,11 @@ before_install:
 - npm install -g gulp
 - bower install
 - ./node_modules/protractor/bin/webdriver-manager update
+
+addons:
+  sauce_connect:
+    username: "diwakar03"
+    access_key: "7b030e87-542e-4a00-a40e-06a0a48dad1c"
 
 before_script:
 - "export DISPLAY=:99.0"
@@ -35,4 +44,6 @@ before_script:
 - sleep 5  # Wait a lot here, selenium and ionic must be running.
 
 script:
-- ./node_modules/protractor/bin/protractor e2e/build/protractor.conf.js
+#- ./node_modules/protractor/bin/protractor e2e/build/protractor.conf.js
+- ./node_modules/protractor/bin/protractor e2e/sauce/protractor-sauce-android.js
+- ./node_modules/protractor/bin/protractor e2e/sauce/protractor-sauce-browser.js

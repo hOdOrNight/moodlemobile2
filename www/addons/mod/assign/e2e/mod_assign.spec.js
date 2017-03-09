@@ -35,7 +35,7 @@ describe('User can manage course assign', function() {
             done();
         });
     });*/
-
+    
     it('View course assign windows', function (done) {
         return MM.loginAsTeacher().then(function () {
             return MM.clickOnInSideMenu('My courses');

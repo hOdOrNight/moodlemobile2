@@ -13,7 +13,7 @@ exports.config = {
         "../../e2e/*.js",
         "../../www/**/e2e/mod_assign.spec.js"
     ],
-    baseUrl: 'http://moodle-mobile-e2e-magician03.c9users.io/',
+    baseUrl: 'http://localhost:8100/',
     seleniumAddress: "http://diwakar03:7b030e87-542e-4a00-a40e-06a0a48dad1c@ondemand.saucelabs.com:80/wd/hub",
     multiCapabilities: [{
         name: 'chrome',
@@ -30,7 +30,9 @@ exports.config = {
         version: "latest",
         username: "diwakar03",
         accessKey: "7b030e87-542e-4a00-a40e-06a0a48dad1c",
-    },
+        'tunnel-identifier' : process.env.TRAVIS_JOB_NUMBER,
+        'build': process.env.TRAVIS_BUILD_NUMBER
+    }/**,
     {
         "deviceName": "Samsung Galaxy S4 Emulator",
         "name": "android",
@@ -44,7 +46,7 @@ exports.config = {
         "autoWebviewTimeout":10000,
         username: 'diwakar03',
         accessKey: '7b030e87-542e-4a00-a40e-06a0a48dad1c'
-    }],
+    }**/],
     restartBrowserBetweenTests: true,
     onPrepare: function(){
         var wd = require('wd'),
@@ -59,16 +61,16 @@ exports.config = {
         global.ISBROWSER      = true;
         global.ISIOS          = false;
         global.ISTABLET       = false;
-        global.DEVICEURL      = 'https://moodle-mobile-e2e-magician03.c9users.io/';
+        global.DEVICEURL      = 'http://localhost:8100/';
         global.DEVICEVERSION  = undefined;
-        global.SITEURL        = 'http://qa.moodle.net';
+        global.SITEURL        = 'http://school.demo.moodle.net';
         global.SITEVERSION    = 2.9;
         global.SITEHASLM      = false;
         global.USERS          = 
 {
     "STUDENT": {
         "LOGIN": "student",
-        "PASSWORD": "test"
+        "PASSWORD": "moodle"
     },
     "TEACHER": {
         "LOGIN": "teacher",
@@ -76,7 +78,7 @@ exports.config = {
     },
     "ADMIN": {
         "LOGIN": "admin",
-        "PASSWORD": "test"
+        "PASSWORD": "moodle"
     }
 };    
     },
