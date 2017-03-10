@@ -25,14 +25,14 @@ var currentView = 'ion-view[nav-view="active"]';
  *
  * @return {Promise} True when it is.
  */
-var isMenuInTransition = function() {
+var isMenuInTransition = function () {
     var sideMenuContentLocator = by.css('ion-side-menu-content');
-    return browser.driver.isElementPresent(sideMenuContentLocator).then(function(present) {
+    return browser.driver.isElementPresent(sideMenuContentLocator).then(function (present) {
         if (!present) {
             return false;
         }
         el = browser.driver.findElement(sideMenuContentLocator);
-        return el.getLocation().then(function(location) {
+        return el.getLocation().then(function (location) {
             if (location.x !== 275 && location.x !== 0) {
                 return true;
             }
@@ -46,9 +46,9 @@ var isMenuInTransition = function() {
  *
  * @return {Promise} True when it is.
  */
-var isMMLoadingActive = function() {
+var isMMLoadingActive = function () {
     var mmLoadingLocator = by.css(currentView + ' .mm-loading-container:not(.hide)');
-    return browser.driver.isElementPresent(mmLoadingLocator).then(function(present) {
+    return browser.driver.isElementPresent(mmLoadingLocator).then(function (present) {
         return present;
     });
 };
@@ -61,11 +61,10 @@ var isMMLoadingActive = function() {
  *
  * @return {Promise} True when the conditions are resolved.
  */
-exports.waitForCondition = function() {
-    return isMMLoadingActive().then(function(inTransition) {
+exports.waitForCondition = function () {
+    return isMMLoadingActive().then(function (inTransition) {
         return !inTransition || isMenuInTransition();
-    }).then(function(inTransition) {
+    }).then(function (inTransition) {
         return inTransition;
     });
 };
-
