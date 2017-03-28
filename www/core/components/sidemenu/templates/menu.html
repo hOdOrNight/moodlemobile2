@@ -34,6 +34,11 @@
                             <i class="icon ion-ionic"></i>{{ 'mm.sidemenu.mycourses' | translate}}
                         </a>
                     </li>
+                    <li>
+                        <a menu-close class="item item-icon-left" ui-sref="site.mm_custom" mm-link auto-login="no" title="{{ 'mm.sidemenu.custom' | translate}}">
+                            <i class="icon ion-bookmark"></i>{{ 'mm.sidemenu.custom' | translate}}
+                        </a>
+                    </li>
                     <li class="item text-center" ng-if="(!handlers || !handlers.length) && !areNavHandlersLoaded()">
                         <ion-spinner></ion-spinner>
                     </li>
