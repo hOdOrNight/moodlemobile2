@@ -27,7 +27,7 @@ var currentView = 'ion-view[nav-view="active"]';
  */
 var isMenuInTransition = function() {
     var sideMenuContentLocator = by.css('ion-side-menu-content');
-    return browser.driver.isElementPresent(sideMenuContentLocator).then(function(present) {
+    return element(by.css(sideMenuContentLocator)).isPresent().then(function(present) {
         if (!present) {
             return false;
         }
@@ -48,7 +48,7 @@ var isMenuInTransition = function() {
  */
 var isMMLoadingActive = function() {
     var mmLoadingLocator = by.css(currentView + ' .mm-loading-container:not(.hide)');
-    return browser.driver.isElementPresent(mmLoadingLocator).then(function(present) {
+    return element(by.css(mmLoadingLocator)).isPresent().then(function(present) {
         return present;
     });
 };

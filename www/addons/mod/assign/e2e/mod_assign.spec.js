@@ -16,7 +16,9 @@ describe('User can manage course assign', function() {
 
     it('View course assign windows', function (done) {
         return MM.loginAsStudent().then(function () {
-            return MM.clickOnInSideMenu('My courses');
+            return browser.sleep(10000)
+        }).then(function() {
+            return MM.clickOnInSideMenu('Course overview');
         }).then(function () {
             return MM.clickOn('Psychology in Cinema');
         }).then(function () {
@@ -32,6 +34,8 @@ describe('User can manage course assign', function() {
 
     it('Click description tab', function (done) {
         return MM.loginAsStudent().then(function () {
+            return browser.sleep(10000)
+        }).then(function() {
             return MM.clickOnInSideMenu('My courses');
         }).then(function () {
             return MM.clickOn('Psychology in Cinema');
@@ -50,7 +54,7 @@ describe('User can manage course assign', function() {
         });
     });
 
-    it('Click PDF file tab', function (done) {
+    /*it('Click PDF file tab', function (done) {
         return MM.loginAsStudent().then(function () {
             return MM.clickOnInSideMenu('My courses');
         }).then(function () {
@@ -103,7 +107,7 @@ describe('User can manage course assign', function() {
         }).then(function () {
             done();
         });
-    });
+    });*/
 
 });
 

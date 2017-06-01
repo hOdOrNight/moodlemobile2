@@ -34,8 +34,9 @@ beforeEach(function() {
 
     // Wait for the login page.
     return browser.driver.wait(function() {
-      return browser.driver.isElementPresent(by.id('mm-login-site')).then(function(e) {
+      return element(by.id('mm-login-site')).isPresent().then(function(e) {
         return e === true;
       });
     }, 50000);
+    
 });
