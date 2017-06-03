@@ -18,7 +18,6 @@ var waitForCondition = require('./plugins/wait_for_transitions.js').waitForCondi
 var MM = {},
     currentNavBar = '.nav-bar-block[nav-bar="active"]',
     currentView = 'ion-view[nav-view="active"]';
-var EC = protractor.ExpectedConditions;
 
 /**
  * Finds and click on a target using text.
@@ -30,23 +29,18 @@ var EC = protractor.ExpectedConditions;
  * @return {Promise}
  */
 MM.clickOn = function (text, container) {
-    browser.sleep(10000).then(function() {
-        var locator = by.xpath('(//a | //button | //*[contains(concat(" ",normalize-space(@class)," ")," item ")])[contains(.,"' + text + '") or contains(@aria-label,"' + text + '")]');
+    waitForCondition();
+    var locator = by.xpath('(//a | //button | //*[contains(concat(" ",normalize-space(@class)," ")," item ")])[contains(.,"' + text + '") or contains(@aria-label,"' + text + '")]');
 
-        if (container) {
-            browser.wait(EC.presenceOf(container), 10000).then(function() {
-                node = container.element(locator);
-                return MM.clickOnElement(node);
-            });
-        } else {
-            node = element(locator);
-            return MM.clickOnElement(node);
-        }
-
-        //browser.wait(EC.elementToBeClickable(node), 10000).then(function() {
-        
-        //});
-    });
+    if (container) {
+        waitForCondition();
+        browser.wait(EC.presenceOf(container), 5000);
+        node = container.element(locator);
+    } else {
+        node = element(locator);
+    }
+    waitForCondition();
+    return MM.clickOnElement(node);
 };
 
 /**
@@ -58,13 +52,11 @@ MM.clickOn = function (text, container) {
  * @return {Promise}
  */
 MM.clickOnElement = function (el) {
+    waitForCondition();
     browser.sleep(2000);
-    browser.wait(EC.presenceOf(el), 15000).then(function() {
-        return browser.wait(EC.elementToBeClickable(el), 15000);
-    }).then(function() {
-        return browser.executeScript('arguments[0].scrollIntoView(true)', el.getWebElement());
-    });
-
+    browser.wait(EC.presenceOf(el), 15000);
+    browser.wait(EC.elementToBeClickable(el), 15000);
+    browser.executeScript('arguments[0].scrollIntoView(true)', el.getWebElement());
     return el.click();
 };
 
@@ -77,18 +69,18 @@ MM.clickOnElement = function (el) {
  * @return {Promise}
  */
 MM.goToBottomAndClick = function (text) {
-    browser.sleep(5000); // this is must, due to slow page rendering issues. Need to contact protractor team.
+    waitForCondition();
+    browser.sleep(2000); // this is must, due to slow page rendering issues. Need to contact protractor team.
     var locator = by.xpath('(//a | //button | //*[contains(concat(" ",normalize-space(@class)," ")," item ")])[contains(.,"' + text + '") or contains(@aria-label,"' + text + '")]');
-    browser.wait(EC.presenceOf(element(locator)), 5000).then(function() {
-        return element(locator);
-    }).then(function(node) {
-        return browser.executeScript('arguments[0].scrollIntoView(false)', node.getWebElement());
-    }).then(function() {
-        return browser.wait(EC.elementToBeClickable(node), 15000);
-    }).then(function() {
-        return node.click();
-    });
-};
+    browser.wait(EC.presenceOf(element(locator)), 5000);
+    node = element(locator);
+
+    waitForCondition();
+    browser.sleep(2000);
+    browser.executeScript('arguments[0].scrollIntoView(false)', node.getWebElement());
+    browser.wait(EC.elementToBeClickable(node), 15000);
+    return node.click();
+}
 
 /**
  * Click on a link in the side menu.
@@ -97,13 +89,12 @@ MM.goToBottomAndClick = function (text) {
  * @return {Promise}
  */
 MM.clickOnInSideMenu = function (text) {
-    var menuBtn = $(currentNavBar + ' [menu-toggle="left"]:not(.hide)');
-    return browser.wait(EC.elementToBeClickable(menuBtn), 5000)
-    .then(function () {
-        var menu =  $('ion-side-menu[side="left"]');
-        return browser.wait(EC.elementToBeClickable(menu), 5000);      
-    }).then(function() {
-        var menu =  $('ion-side-menu[side="left"]');
+    return MM.openSideMenu().then(function () {
+        waitForCondition();
+        var menu = $('ion-side-menu[side="left"]');
+        browser.wait(EC.visibilityOf(menu), 15000);
+        browser.wait(EC.elementToBeClickable(menu), 5000);
+        //browser.sleep(5000);
         return MM.clickOn(text, menu);
     });
 };
@@ -124,11 +115,9 @@ MM.getNavBar = function () {
  */
 MM.getView = function () {
     waitForCondition();
-    browser.wait(EC.visibilityOf($(currentView)), 20000)
-    .then(function() {
-        browser.sleep(3000); //for contents to render
-        return $(currentView);
-    });
+    browser.wait(EC.visibilityOf($(currentView)), 20000);
+    browser.sleep(3000); //for contents to render
+    return $(currentView);
 };
 
 /**
@@ -139,18 +128,17 @@ MM.getView = function () {
 MM.goBack = function () {
     var backBtn = $(currentNavBar + ' .back-button');
     waitForCondition();
-    browser.wait(EC.visibilityOf(backBtn), 15000).then(function() {
-        return backBtn.isPresent().then(function (present) {
-            if (present) {
-                return backBtn.isDisplayed().then(function (displayed) {
-                    if (displayed) {
-                        return backBtn.click();
-                    }
-                    throw new Error('Could not find back button.');
-                });
-            }
-            throw new Error('Could not find the back button.');
-        });
+    browser.wait(EC.visibilityOf(backBtn), 15000);
+    return backBtn.isPresent().then(function (present) {
+        if (present) {
+            return backBtn.isDisplayed().then(function (displayed) {
+                if (displayed) {
+                    return backBtn.click();
+                }
+                throw new Error('Could not find back button.');
+            });
+        }
+        throw new Error('Could not find the back button.');
     });
 };
 
@@ -165,26 +153,25 @@ MM.loginAs = function (username, password) {
 
     browser.ignoreSynchronization = true;
     browser.waitForAngular();
+    browser.sleep(10000);
     browser.wait(EC.visibilityOf(element(by.model('siteurl'))), 15000);
-    browser.sleep(5000);
+
     element(by.model('siteurl'))
         .sendKeys(SITEURL);
     browser.wait(EC.elementToBeClickable($('[ng-click="connect(siteurl)"]')), 15000);
     return $('[ng-click="connect(siteurl)"]').click()
-            .then(function() {
-            return browser.wait(EC.visibilityOf($('[ng-click="login()"]')), 15000);
-            }).then(function() {
+        .then(function () {
+            waitForCondition();
+            browser.wait(EC.visibilityOf($('[ng-click="login()"]')), 15000);
+        }).then(function() {
             element(by.model('credentials.username'))
                 .sendKeys(username);
             element(by.model('credentials.password'))
                 .sendKeys(password);
-            return browser.sleep(5000);
-            }).then(function() {
-            return browser.wait(EC.elementToBeClickable($('[ng-click="login()"]')), 15000);
-            }).then(function() {
-                return $('[ng-click="login()"]').click();
-            });
-
+        }).then(function() {
+            browser.wait(EC.elementToBeClickable($('[ng-click="login()"]')), 15000);
+            return $('[ng-click="login()"]').click();
+        }) ;
 };
 
 /**
@@ -231,8 +218,9 @@ MM.logout = function () {
  */
 MM.openSideMenu = function () {
     var menuBtn = $(currentNavBar + ' [menu-toggle="left"]:not(.hide)');
-    
-    
+    waitForCondition();
+    browser.wait(EC.visibilityOf(menuBtn), 15000);
+    browser.wait(EC.elementToBeClickable(menuBtn), 15000);
 
     function navigateBack() {
         return MM.goBack().then(function () {
@@ -253,12 +241,7 @@ MM.openSideMenu = function () {
             return navigateBack();
         });
     }
-    //browser.wait(EC.elementToBeClickable(menuBtn), 15000).then(function() {
-    browser.sleep(10000).then(function() {
-        return openMenu();
-    });
-    
-    //});
+    return openMenu();
 };
 
 global.MM = global.MM || MM;
